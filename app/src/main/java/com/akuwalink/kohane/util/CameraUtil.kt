@@ -1,7 +1,6 @@
 package com.akuwalink.kohane.util
 
 import android.opengl.Matrix
-import com.akuwalink.kohane.logic.model.Light
 
 class Matrix(){
     //分别是投影矩阵，朝向矩阵，最终矩阵，相机位置

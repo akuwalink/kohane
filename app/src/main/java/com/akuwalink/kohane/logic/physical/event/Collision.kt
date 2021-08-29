@@ -6,6 +6,7 @@ import com.akuwalink.kohane.logic.model.World
 import com.akuwalink.kohane.logic.physical.basic.BasicModel
 import com.akuwalink.kohane.logic.physical.basic.CollisionModels
 import java.math.BigDecimal
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.concurrent.thread
 
@@ -19,7 +20,9 @@ object Collision{
      */
     @Synchronized
     fun collisionStart(world: World, mode:Int=10){
-        for(model in world.activity_list){
+        var model:Model
+        for(i in world.activity_list){
+            model=i.value
             var event=Event()
             var x:Float=0f
             var y:Float=0f
@@ -80,7 +83,7 @@ object Collision{
      * @param mode 碰撞模式
      * 进行物体碰撞检测
      */
-    private fun collisionDetection(model: Model, modelList: CopyOnWriteArrayList<Model>, mode:Int):Event{
+    private fun collisionDetection(model: Model, modelList:ArrayList<Model>, mode:Int):Event{
         var event=Event()
         when(mode){
             CollisionModels.COLLISION_MODE_BOX->{
@@ -124,15 +127,17 @@ object Collision{
      * @param list 模型列表
      * 划分碰撞检测区域，减少计算量,返回新的碰撞列表
      */
-    private fun diviteModel(model:Model,list:List<Model>):CopyOnWriteArrayList<Model>{
-        var now_list= CopyOnWriteArrayList<Model>()
+    private fun diviteModel(model:Model,list:ConcurrentHashMap<Integer,Model>):ArrayList<Model>{
+        var now_list= ArrayList<Model>()
         var x=model.collision_model.center.x
         var y=model.collision_model.center.y
         var z=model.collision_model.center.z
 
+        var model:Model
         for (i in list){
-            if((Math.abs(i.collision_model.center.x-x)<=2)&&(Math.abs(i.collision_model.center.y-y)<=2)){
-                now_list.add(i)
+            model=i.value
+            if((Math.abs(model.collision_model.center.x-x)<=2)&&(Math.abs(model.collision_model.center.y-y)<=2)){
+                now_list.add(model)
             }
         }
         return now_list

@@ -13,7 +13,7 @@ import com.akuwalink.kohane.util.TextureUtil
 open class Model(point:FloatArray, vein:FloatArray?,normal:FloatArray?,context: Context){
     /**
      * 自上往下为：自身变换矩阵，context，质量，光线粗糙度，是否可损坏物，是否可移动，碰撞模型<br/>
-     *  速度，粗糙度，纹理id，碰撞模式，碰撞测试模型
+     *  速度，粗糙度，纹理id，碰撞模式，碰撞测试模型,物体ID
      *
      */
     var martix_self:FloatArray= FloatArray(16)
@@ -26,6 +26,7 @@ open class Model(point:FloatArray, vein:FloatArray?,normal:FloatArray?,context: 
     var speed=Vec3()
     var rub=0.003f
     var texId=0
+    var id:Int=0
 
     var collision_mode=CollisionModels.COLLISION_MODE_BOX
     var collision_model_temp: BasicModel= BasicModel()
@@ -46,7 +47,7 @@ open class Model(point:FloatArray, vein:FloatArray?,normal:FloatArray?,context: 
     /**
      * 给子类进行绘制自身
      */
-    open fun drawself(light:Light,matrix:com.akuwalink.kohane.util.Matrix){
+    open fun drawSelf(light:Light,matrix:com.akuwalink.kohane.util.Matrix){
 
     }
 
