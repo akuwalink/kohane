@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <AbsoluteLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,23 +15,30 @@
             android:layout_y="164dp" />
     </AbsoluteLayout>
 
-    <LinearLayout android:id="@+id/room_chat"
-        android:visibility="gone"
+    <LinearLayout
+        android:id="@+id/room_chat"
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <AbsoluteLayout
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-
+            <ImageButton
+                android:id="@+id/room_kohane_inchat"
+                android:layout_width="50dp"
+                android:layout_height="200dp"
+                android:layout_x="148dp"
+                android:layout_y="109dp" />
         </AbsoluteLayout>
 
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
         </LinearLayout>
     </LinearLayout>
